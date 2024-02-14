@@ -16,7 +16,7 @@ const user = sequelize.define("user", User);
 const rating = sequelize.define('rating_prod', Rating)
 const images = sequelize.define('images', Images)
 
-console.log(sequelize.models);
+
 product.belongsToMany(user, {through: "wishlist"})
 product.belongsToMany(user, {through: "cart"})
 product.belongsToMany(user, {through: rating})
@@ -26,7 +26,7 @@ user.hasMany(product)
 
 
 
-console.log(sequelize.models);
+
 
 try {
   sequelize.authenticate();
@@ -36,5 +36,5 @@ try {
 }
 
 module.exports = {
-  sequelize,
+  sequelize,product,user,rating,images
 };
