@@ -12,6 +12,10 @@ const Product = sequelize.define('product', {
       type: DataTypes.STRING,
       allowNull: false
     },
+    quantity:{
+        type: DataTypes.INTEGER
+  
+    },
     description: {
       type: DataTypes.TEXT,
       allowNull: false
@@ -23,6 +27,10 @@ const Product = sequelize.define('product', {
     category:{
         type: DataTypes.STRING,
         allowNull: false
+
+    },
+    rate:{
+        type: DataTypes.INTEGER
 
     },
     image: {

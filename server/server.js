@@ -8,6 +8,15 @@ const  Wishlist=require('../backend/models/wishlist')
 const  Seller=require('../backend/models/seller')
 const  ShoppingCart=require('../backend/models/shoppingcart')
 
+Seller.hasMany(Product)
+Product.belongsTo(Seller)
+User.hasMany(Product)
+Product.belongsToMany(User)
+
+
+
+
+
 sequelize.sync()
   .then(() => {
     console.log('Database & tables created!');
