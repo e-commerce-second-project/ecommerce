@@ -1,8 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const connection=require('../db')
 const {sequelize}=require('../db')
 
-const User = sequelize.define('user', {
+const User = {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -23,7 +22,12 @@ const User = sequelize.define('user', {
     },
     image: {
       type: DataTypes.STRING
+    },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
-  });
+
+  };
 
   module.exports=User

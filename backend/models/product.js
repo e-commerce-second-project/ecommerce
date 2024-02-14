@@ -1,8 +1,8 @@
 const {  DataTypes } = require('sequelize');
-const connection=require('../db')
-const {sequelize}=require('../db')
+const {sequelize}=require('../db');
+const User = require('./user');
 
-const Product = sequelize.define('product', {
+const Product =  {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -25,16 +25,18 @@ const Product = sequelize.define('product', {
       allowNull: false
     },
     category:{
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
 
     },
     rate:{
-        type: DataTypes.INTEGER
+      type: DataTypes.INTEGER
 
     },
-    image: {
-      type: DataTypes.STRING
+    sold : {
+      type: DataTypes.INTEGER
     }
-  });
-  module.exports=Product
+    
+  };
+
+  module.exports = Product
