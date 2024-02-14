@@ -1,17 +1,10 @@
 const express = require('express')
 const cors = require ('cors')
 const {sequelize}=require('../backend/db')
-const  Admin=require('../backend/models/admin')
-const  User=require('../backend/models/user')
-const  Product=require('../backend/models/product')
-const  Wishlist=require('../backend/models/wishlist')
-const  Seller=require('../backend/models/seller')
-const  ShoppingCart=require('../backend/models/shoppingcart')
-
-Seller.hasMany(Product)
-Product.belongsTo(Seller)
-User.hasMany(Product)
-Product.belongsToMany(User)
+// const  User=require('../backend/models/user')
+// const  Product=require('../backend/models/product')
+// const  Wishlist=require('../backend/models/wishlist')
+// const  ShoppingCart=require('../backend/models/shoppingcart')
 
 
 
