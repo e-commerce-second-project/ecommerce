@@ -6,7 +6,7 @@ const {sequelize}=require('../backend/db')
 // const  Wishlist=require('../backend/models/wishlist')
 // const  ShoppingCart=require('../backend/models/shoppingcart')
 
-
+const routeruser=require('../backend/routes/routeuser')
 
 
 
@@ -24,7 +24,7 @@ app.use(express.json())
 
 app.use(express.static(__dirname + '../public'))
 app.use(cors())
-
+app.use('/user',routeruser)
 
 
 

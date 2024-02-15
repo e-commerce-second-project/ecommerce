@@ -6,7 +6,7 @@ const User = require("./models/user");
 const Rating = require("./models/rating");
 const Images = require("./models/images");
 
-const sequelize = new Sequelize("ecommerce", "root", "root", {
+const sequelize = new Sequelize("ecommerce", "yessine", "yessine147", {
   host: "localhost",
   dialect: "mysql",
 });

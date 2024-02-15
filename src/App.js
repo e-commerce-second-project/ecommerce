@@ -1,14 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignUp from "./components/sign-up.jsx";
-
+import UserInterface from "./components/userinterface.jsx";
 
 const App=()=>{
   return(
  <div className="App">
   <Router>
     <Routes>
-<Route path="/" element={<SignUp/>}/>
+    <Route path="/" element={<UserInterface/>}/>
+<Route path="/signup" element={<SignUp/>}/>
     </Routes>
   </Router>
  </div>
