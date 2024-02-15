@@ -1,13 +1,7 @@
-const express = require('express')
-const cors = require ('cors')
-const {sequelize}=require('../backend/db')
-// const  User=require('../backend/models/user')
-// const  Product=require('../backend/models/product')
-// const  Wishlist=require('../backend/models/wishlist')
-// const  ShoppingCart=require('../backend/models/shoppingcart')
-
-
-
+const express = require('express');
+const cors = require ('cors');
+const {sequelize}=require('../backend/db');
+const authRoutes= require("../backend/routes/auth")
 
 
 sequelize.sync()
@@ -24,7 +18,8 @@ app.use(express.json())
 
 app.use(express.static(__dirname + '../public'))
 app.use(cors())
-
+app.use(cors())
+app.use('/',authRoutes)
 
 
 

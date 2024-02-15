@@ -2,17 +2,17 @@ const { Sequelize, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const mysql = require("mysql2");
 const Product = require("./models/product");
-const User = require("./models/user");
+const User = require("../backend/models/user");
 const Rating = require("./models/rating");
 const Images = require("./models/images");
 
-const sequelize = new Sequelize("ecommerce", "root", "root", {
+const sequelize = new Sequelize("ecommerce", "root", "24072003", {
   host: "localhost",
   dialect: "mysql",
 });
 
 const product = sequelize.define("product", Product);
-const user = sequelize.define("user", User);
+const user = sequelize.define(" user", User);
 const rating = sequelize.define('rating_prod', Rating)
 const images = sequelize.define('images', Images)
 
