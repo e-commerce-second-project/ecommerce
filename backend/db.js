@@ -11,8 +11,8 @@ const sequelize = new Sequelize("ecommerce", "yessine", "yessine147", {
   host: "localhost",
   dialect: "mysql",
 });
-
 const product = sequelize.define("product", Product);
+
 const user = sequelize.define(" user", User);
 const rating = sequelize.define('rating_prod', Rating)
 const images = sequelize.define('images', Images)
@@ -29,12 +29,14 @@ user.hasMany(product)
 
 
 
+
 try {
   sequelize.authenticate();
   console.log("Connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
 }
+
 
 module.exports = {
   sequelize,product,user,rating,images
