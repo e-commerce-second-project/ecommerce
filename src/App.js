@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from "./components/sign-up.jsx";
+import Signup from "./components/Signup.jsx";
 
 
 const App=()=>{
@@ -8,7 +8,7 @@ const App=()=>{
  <div className="App">
   <Router>
     <Routes>
-<Route path="/" element={<SignUp/>}/>
+<Route path="/" element={<Signup/>}/>
     </Routes>
   </Router>
  </div>
