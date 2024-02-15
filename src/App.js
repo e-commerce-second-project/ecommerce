@@ -5,13 +5,13 @@ import Signup from "./components/Signup.jsx";
 
 const App=()=>{
   return(
- <div className="App">
+  <div className="App">
   <Router>
     <Routes>
 <Route path="/" element={<Signup/>}/>
     </Routes>
   </Router>
- </div>
+  </div>
   )
 }
 export default App
