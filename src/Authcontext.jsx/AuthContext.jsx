@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ Component }) => { // Change `Component` to `Component`
+const AuthProvider = ({ Component }) => { 
   const [token, setToken] = useState(Cookies.get('token') || null);
 
   const setTokenInCookies = (token) => {
@@ -29,7 +29,7 @@ const AuthProvider = ({ Component }) => { // Change `Component` to `Component`
 
   return (
     <AuthContext.Provider value={{ setToken: setNewToken, clearToken, token }}>
-      {Component} {/* Render children */}
+      {Component} 
     </AuthContext.Provider>
   );
 };
