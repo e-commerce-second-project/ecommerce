@@ -3,10 +3,12 @@ import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListIt
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; // Import the shopping cart icon
+import { Link } from 'react-router-dom';
 
 const NavbarWithSidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+const [target,settarget]=useState('')
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -46,16 +48,29 @@ const NavbarWithSidebar = () => {
             >
               <FavoriteIcon />
             </IconButton>
-            <Avatar sx={{ width: 32, height: 32, marginRight: 2 }} src="/path/to/profile/photo.jpg" alt="Profile" />
+            {/* Shopping cart icon */}
+            <IconButton
+              size="large"
+              color="inherit"
+              aria-label="cart"
+              sx={{ color: 'black', mr: 2 }}
+            >
+              <ShoppingCartIcon />
+            </IconButton>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <InputBase
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
                 sx={{ mr: 1 }}
+              onChange={(e)=>{
+                settarget(e.target.value)
+              }}
               />
-              <IconButton color="inherit" aria-label="search">
+             <Link to={`/searchuserinterface/${target}`}> <IconButton color="inherit" aria-label="search">
                 <SearchIcon />
-              </IconButton>
+              </IconButton></Link>
+              <Avatar sx={{ width: 32, height: 32, marginRight: 2 }} src="/path/to/profile/photo.jpg" alt="Profile" />
+
             </Box>
           </Box>
         </Toolbar>

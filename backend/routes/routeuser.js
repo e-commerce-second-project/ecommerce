@@ -3,6 +3,7 @@ const controlleruser=require('../controller/usercontroller')
 
 
 routeruser.get('/allproducts',controlleruser.getProducts)
+routeruser.get('/search',controlleruser.searchProducts)
 
 
 

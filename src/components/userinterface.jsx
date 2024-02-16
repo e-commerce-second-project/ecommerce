@@ -108,7 +108,6 @@ const UserInterface = () => {
       >
         {showAllProducts ? "Show Less" : "View All Products"}
       </Button>
-      <Footer />
     </div>
   );
 };
