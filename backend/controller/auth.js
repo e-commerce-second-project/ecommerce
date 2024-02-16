@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const db=require('../db.js');
 const secretKey = 'my_secret_key_2023$#@!';
 // const getOneUser=require('./controller');
-const User = db.models.user
+/// 9a3ed trequirii  f haja ghaltaaa ya brooooooo akra les filesssss!!!!!!!! 
+// const User = db.models.user
 function generateToken(user) {
     const expire = 60 * 60 * 24;
     return jwt.sign({ user }, secretKey, { expiresIn: expire });

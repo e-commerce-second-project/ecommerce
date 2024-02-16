@@ -6,7 +6,7 @@ const User = require("../backend/models/user");
 const Rating = require("./models/rating");
 const Images = require("./models/images");
 
-const sequelize = new Sequelize("ecommerce", "yessine", "yessine147", {
+const sequelize = new Sequelize("ecommerce", "root", "root", {
 
   host: "localhost",
   dialect: "mysql",
@@ -25,7 +25,7 @@ product.hasMany(images)
 user.hasMany(product)
 
 
-
+1
 
 
 
