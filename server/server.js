@@ -1,4 +1,5 @@
 const express = require('express')
+const Routes = require("../backend/routes/routeimage.js")
 const cors = require ('cors')
 const {sequelize}=require('../backend/db')
 // const  User=require('../backend/models/user')
@@ -20,10 +21,11 @@ sequelize.sync()
 
 const PORT = 3300
 const app = express()
-app.use(express.json())
-
-app.use(express.static(__dirname + '../public'))
 app.use(cors())
+app.use(express.json())
+app.use(express.static(__dirname + '../public'))
+app.use("/",Routes)
+
 
 
 

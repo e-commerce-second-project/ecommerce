@@ -1,9 +1,10 @@
 import React from "react";
-import ProductCard from "./Products.jsx";
+import ProductCard from "../User/Products.jsx"
 import Footer from "./Footer.jsx";
 import Navbar from "./Navbar.jsx";
 import Welcome from "./Categories.jsx";
 import Images from "./Welcome/welcomeimages.jsx";
+
 
 const HomePage=()=>{
 return (
@@ -13,16 +14,15 @@ return (
             <div>
             <Welcome/>
             </div>
-            <div style={{width:600,height:600}}>
+            <div style={{width:450,height:400}}>
             <Images/>
             </div>
         </section>
+        
         <ProductCard/>
         <Footer/>
     </div>
 )
 }
-
-
 
 export default HomePage

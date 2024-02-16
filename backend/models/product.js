@@ -27,7 +27,6 @@ const Product =  {
     category:{
       type: DataTypes.STRING,
       allowNull: false
-
     },
     rate:{
       type: DataTypes.INTEGER
