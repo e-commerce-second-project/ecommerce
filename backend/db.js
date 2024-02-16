@@ -6,14 +6,14 @@ const User = require("../backend/models/user");
 const Rating = require("./models/rating");
 const Images = require("./models/images");
 
-const sequelize = new Sequelize("ecommerce", "yessine", "yessine147", {
+const sequelize = new Sequelize("ecommerce", "root", "24072003", {
 
   host: "localhost",
   dialect: "mysql",
 });
 const product = sequelize.define("product", Product);
 
-const user = sequelize.define(" user", User);
+const user = sequelize.define("user",User);
 const rating = sequelize.define('rating_prod', Rating)
 const images = sequelize.define('images', Images)
 
@@ -39,5 +39,6 @@ try {
 
 
 module.exports = {
-  sequelize,product,user,rating,images
+  product,user,rating,images
 };
+module.exports =sequelize

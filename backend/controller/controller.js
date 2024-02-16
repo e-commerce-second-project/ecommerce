@@ -2,6 +2,8 @@ require("dotenv").config
 const User = require('../../backend/models/user')
 const bcrypt =require('bcrypt')
 const db =require('../db')
+const jwt = require('jsonwebtoken');
+
 module.exports={
     getUsers:async(req, res) => {
     let us=await User.findAll()
@@ -20,4 +22,7 @@ module.exports={
     res.json(go)
 }
 }
-// module.exports=getOneUser
+
+
+
+module.exports = { generateToken };

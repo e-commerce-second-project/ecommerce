@@ -22,7 +22,7 @@ const NavbarWithSidebar = () => {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={toggleSidebar} // Toggle sidebar when menu icon is clicked
+              onClick={toggleSidebar} 
             >
               <MenuIcon />
             </IconButton>

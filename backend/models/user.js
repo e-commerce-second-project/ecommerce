@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const {sequelize}=require('../db')
-
+const db =require("../db")
 const User = {
     id: {
       type: DataTypes.INTEGER,

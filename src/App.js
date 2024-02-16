@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from "./components/Signup.jsx";
+import Login from "./components/Login.jsx";
+import Userinterface from "./components/userinterface.jsx"
+import axios from "axios";
 
-import SignUp from "./components/sign-up.jsx";
-import UserInterface from "./components/userinterface.jsx";
 
-const App=()=>{
-  return(
-  <div className="App">
-  <Router>
-    <Routes>
+const App = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const log = () => {
+    axios.post("http://127.0.0.1:3300/login", { email: email, password: password })
+      .then((res) => {
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+//     const changeType=(type)=>{
+//     if(type==='seller'){
+//       navigate('/seller')
+//     }
+//     else if (type==='admin'){
+//       navigate('/admin')
+//     }
+//     else if (type==='client'){
+//       navigate('/home')
+//     }
+// }
+// const x=()=>{
+//   navigate('/Signup');
+// }
 
-<Route path="/" element={<Signup/>}/>
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path='/Login' element={<Login  setEmail={setEmail} setPassword={setPassword} log={log} />} />
+          <Route path="/" element={<Signup />} />
+          <Route path="/userinterface" element={<Userinterface/>} />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
 
-    <Route path="/userinterface" element={<UserInterface/>}/>
-
-    </Routes>
-  </Router>
-  </div>
-  )
-}
-export default App
+export default App;
