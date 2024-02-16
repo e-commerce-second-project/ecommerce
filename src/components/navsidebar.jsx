@@ -1,14 +1,34 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, InputBase, Button, Avatar, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, InputBase, Button, Avatar, Box, Badge } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SearchIcon from '@mui/icons-material/Search';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; // Import the shopping cart icon
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'; 
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect } from 'react';
+
 
 const NavbarWithSidebar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-const [target,settarget]=useState('')
+  const [target, setTarget] = useState('');
+  const [favoriteItemCount,setfavoriteItemCount]=useState(0)
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3300/user/getallwishlistproducts/${1}`)
+      .then((res) => {
+        console.log('products fetched from wishlist !');
+        setfavoriteItemCount(res.data.length)
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+
+
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -18,22 +38,22 @@ const [target,settarget]=useState('')
       <AppBar position="static" color="inherit">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" component="div" sx={{ color: 'black', mr: 4 }}>
+              MyShop
+            </Typography>
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={toggleSidebar} // Toggle sidebar when menu icon is clicked
+              onClick={toggleSidebar} 
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ color: 'black' }}>
-              MyShop
-            </Typography>
-            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto' }}>
               {['Home', 'Contact', 'About'].map((item) => (
-                <Typography key={item} variant="h6" component="div" sx={{ color: 'black', mr: 2 }}>
+                <Typography key={item} variant="h6" component="div" sx={{ color: 'black', mr: 4, marginLeft: '20px' }}>
                   {item}
                 </Typography>
               ))}
@@ -46,9 +66,10 @@ const [target,settarget]=useState('')
               aria-label="favorite"
               sx={{ color: 'black', mr: 2 }}
             >
-              <FavoriteIcon />
+              <Badge badgeContent={favoriteItemCount} color="secondary">
+                <Link to='wishlist'><FavoriteIcon /></Link>
+              </Badge>
             </IconButton>
-            {/* Shopping cart icon */}
             <IconButton
               size="large"
               color="inherit"
@@ -62,11 +83,11 @@ const [target,settarget]=useState('')
                 placeholder="Search..."
                 inputProps={{ 'aria-label': 'search' }}
                 sx={{ mr: 1 }}
-              onChange={(e)=>{
-                settarget(e.target.value)
-              }}
+                onChange={(e)=>{
+                  setTarget(e.target.value)
+                }}
               />
-             <Link to={`/searchuserinterface/${target}`}> <IconButton color="inherit" aria-label="search">
+              <Link to={`/searchuserinterface/${target}`}> <IconButton color="inherit" aria-label="search">
                 <SearchIcon />
               </IconButton></Link>
               <Avatar sx={{ width: 32, height: 32, marginRight: 2 }} src="/path/to/profile/photo.jpg" alt="Profile" />
