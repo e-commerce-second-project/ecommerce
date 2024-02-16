@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import SignUp from "./components/sign-up.jsx";
+import SignUp from "./components/Signup.jsx";
 import UserInterface from "./components/userinterface.jsx";
-
+import Searchuserinterface from "./components/searchuserinterface.jsx";
 const App=()=>{
   return(
  <div className="App">
   <Router>
     <Routes>
 
-<Route path="/" element={<Signup/>}/>
+<Route path="/signup" element={<Signup/>}/>
 
-    <Route path="/userinterface" element={<UserInterface/>}/>
+    <Route path="/" element={<UserInterface/>}/>
+    <Route path="/searchuserinterface/:target" element={<Searchuserinterface/>}/>
 
     </Routes>
   </Router>
