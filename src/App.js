@@ -6,7 +6,7 @@ import UserInterface from "./components/userinterface.jsx";
 
 const App=()=>{
   return(
- <div className="App">
+  <div className="App">
   <Router>
     <Routes>
 
@@ -16,7 +16,7 @@ const App=()=>{
 
     </Routes>
   </Router>
- </div>
+  </div>
   )
 }
 export default App
