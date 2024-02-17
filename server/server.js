@@ -10,13 +10,13 @@ const {sequelize}=require('../backend/db')
 
 
 
-sequelize.sync()
-  .then(() => {
-    console.log('Database & tables created!');
-  })
-  .catch(error => {
-    console.error('Error creating database:', error);
-  });
+// sequelize.sync()
+//   .then(() => {
+//     console.log('Database & tables created!');
+//   })
+//   .catch(error => {
+//     console.error('Error creating database:', error);
+//   });
 
 const PORT = 3300
 const app = express()
