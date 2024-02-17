@@ -1,17 +1,16 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const db=require('../db.js');
+const db = require ("../../backend/db.js")
 const secretKey = 'my_secret_key_2023$#@!';
-// const getOneUser=require('./controller');
-/// 9a3ed trequirii  f haja ghaltaaa ya brooooooo akra les filesssss!!!!!!!! 
-// const User = db.models.user
+
+const User = db.models.user
 function generateToken(user) {
     const expire = 60 * 60 * 24;
     return jwt.sign({ user }, secretKey, { expiresIn: expire });
 }
 
 const signUpUser = async (req, res) => {
-    const { username, email, image,password,role } = req.body;
+    const { username, email, image, password, role } = req.body;
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -22,7 +21,8 @@ const signUpUser = async (req, res) => {
             password: hashedPassword,
             role
         };
-            await User.create(newUser);
+        await User.create(newUser);
+
         const token = generateToken({ user: newUser });
 
         res.status(201).json({ message: 'User created successfully', token });
@@ -53,32 +53,5 @@ const login = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-// const login=async(req,res)=>{
-//     const{email,password}= req.body
-//     try{
-//         getOneUser(email)
-//         .then(async(res)=>{
-//             if(!res){
-//                 try{
-//                     const check=await bcrypt.compare(password,res.password)
-//                     if(check){
-//                         const token =jwt.sign({email:email},secretKey)
-//                         res.status(200).json({ message: 'Login successful', token })
-//                     }
-//                     else{
-//                         return res.status(401).json({ error: 'Invalid password' })
-//                     }
-//                 }
-//                 catch(err){
-//                     res.status(500).json(err)
-//             }
-//             }else {
-//                 res.status(404).json({ error: 'User not found' });
-//             }
-//         })
-//     }
-//     catch(err){
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// }
+
 module.exports = { signUpUser, login };
