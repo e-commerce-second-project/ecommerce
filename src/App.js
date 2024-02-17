@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
 import Userinterface from "./components/userinterface.jsx";
-import AboutUs from "./components/AboutUs.jsx"
+import AboutUs from "./components/AboutUs.jsx";
+import Contact from "./components/Contact.jsx"
 import axios from "axios";
 
 
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/" element={<Signup />} />
           <Route path="/userinterface" element={<Userinterface/>} />
           <Route path='/AboutUs' element={<AboutUs/>}></Route>
+          <Route path='/Contact' element={<Contact/>}></Route>
         </Routes>
       </Router>
     </div>
