@@ -1,6 +1,5 @@
 import React from "react";
-import ProductCard from "../User/Products.jsx"
-import Footer from "./Footer.jsx";
+import FooterSec from "./FooterSec.jsx";
 import Navbar from "./Navbar.jsx";
 import Welcome from "./Categories.jsx";
 import Images from "./Welcome/welcomeimages.jsx";
@@ -18,9 +17,7 @@ return (
             <Images/>
             </div>
         </section>
-        
-        <ProductCard/>
-        <Footer/>
+        <FooterSec/>
     </div>
 )
 }

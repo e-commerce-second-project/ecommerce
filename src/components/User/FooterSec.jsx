@@ -1,7 +1,7 @@
 import React from "react"
 
 
-const Footer=()=>{
+const FooterSec=()=>{
     return(
         <div>
 <footer class="bg-black dark:bg-gray-900">
@@ -116,4 +116,4 @@ const Footer=()=>{
 }
 
 
-export default Footer
+export default FooterSec
