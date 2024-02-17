@@ -1,8 +1,10 @@
+import './App.css'
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Signup from "./components/Signup.jsx";
 import Login from "./components/Login.jsx";
-import Userinterface from "./components/userinterface.jsx"
+import Userinterface from "./components/userinterface.jsx";
+import AboutUs from "./components/AboutUs.jsx"
 import axios from "axios";
 
 
@@ -39,6 +41,7 @@ const App = () => {
           <Route path='/Login' element={<Login  setEmail={setEmail} setPassword={setPassword} log={log} />} />
           <Route path="/" element={<Signup />} />
           <Route path="/userinterface" element={<Userinterface/>} />
+          <Route path='/AboutUs' element={<AboutUs/>}></Route>
         </Routes>
       </Router>
     </div>
