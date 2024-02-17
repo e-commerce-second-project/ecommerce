@@ -20,7 +20,7 @@ const Login = ({ changeType, log, setEmail, setPassword }) => {
       </nav>
       <div style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%' }}>
         <div style={{ backgroundColor: '#cbe4e8', width: '1440px', height: '1561px', position: 'relative', display: 'inline-flex', alignItems: 'center', gap: '129px', top: '200px' }}>
-          <div style={{ width: '805px', height: '781px', backgroundColor: '#cbe4e8', borderRadius: '0px 4px 4px 0px', overflow: 'hidden', position: 'relative' }}>
+          <div style={{ width: '500px', height: '500px', backgroundColor: '#cbe4e8', borderRadius: '0px 4px 4px 0px', overflow: 'hidden', position: 'relative' }}>
           <img
               style={{ position: 'absolute', width: '500px', height: '600px', top: '0px', left: '4px' }}
               alt="Dl beatsnoop"
