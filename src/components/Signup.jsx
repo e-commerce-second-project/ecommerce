@@ -1,21 +1,22 @@
 import React, { useState } from "react";
-import { Button } from "./Button.jsx";
+import { Button, TextField } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import Footer from "./footer.jsx";
 import axios from "axios";
-// import context from '../Authcontext.jsx/Context.jsx'; 
-export const Signup = () => {
-  // const { setToken } = useContext(context);
+import Cookies from "js-cookie";
+
+const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const[role,setRole]=useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const add = () => {
-    axios.post('http://127.0.0.1:3300/signup', { password: password, email: email, username: name ,role:role})
+    axios.post('http://127.0.0.1:3300/signup', { password: password, email: email, username: name, role: role })
       .then(res => {
-        // setToken(res.data.token);
+        const token = res.data.token;
+        Cookies.set('token', token, { expires: 7 });
         console.log('added');
       })
       .catch(err => console.log(err));
@@ -24,77 +25,53 @@ export const Signup = () => {
   return (
     <div>
       <nav>
-        <div className='flex justify-center gap-8 mt-11 mb-6'>
-          <h1 className='absolute left-20 font-bold text-xl'>Exlusive</h1>
-          <NavLink to={'/home'} >Home</NavLink>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '11px', marginBottom: '6px' }}>
+          <h1 style={{ position: 'absolute', left: '20px', fontWeight: 'bold', fontSize: 'xl' }}>Exlusive</h1>
+          <NavLink to={'/home'}>Home</NavLink>
           <NavLink to={'/contact'}>Contact</NavLink>
           <NavLink to={'/AboutUs'}>AboutUs</NavLink>
-          <NavLink to={'/Singup'}>Sing up</NavLink>
+          <NavLink to={'/Singup'}>Sign up</NavLink>
         </div>
       </nav>
-      <div className="bg-white flex flex-row justify-center w-full ">
-        <div className="bg-bg w-[1440px] h-[1561px]">
-          <div className="items-center gap-[129px] top-[45px] left-[67px] inline-flex relative">
-            <div className="relative w-[805px] h-[630px] bg-[#cbe4e8] rounded-[0px_4px_4px_0px] overflow-hidden">
-              <img
-                className="absolute w-[805px] h-[600px] top-[0px] left-4"
-                alt="Dl beatsnoop"
-                src="https://i.imgur.com/nxyvDFz.png"
-              />
+      <div style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'center', width: '100%' }}>
+        <div style={{ backgroundColor: '#cbe4e8', width: '1440px', height: '1561px', position: 'relative', display: 'inline-flex', alignItems: 'center', gap: '129px', top: '45px', left: '67px' }}>
+          <div style={{ width: '805px', height: '630px', backgroundColor: '#cbe4e8', borderRadius: '0px 4px 4px 0px', overflow: 'hidden', position: 'relative' }}>
+            <img
+              style={{ position: 'absolute', width: '805px', height: '600px', top: '0px', left: '4px' }}
+              alt="Dl beatsnoop"
+              src="https://i.imgur.com/nxyvDFz.png"
+            />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '48px', position: 'relative' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '24px', position: 'relative' }}>
+              <div style={{ position: 'relative', fontWeight: 'bold', fontSize: '36px', lineHeight: '1.5', whiteSpace: 'nowrap' }}>
+                Create an account
+              </div>
+              <div style={{ position: 'relative', fontWeight: 'normal', fontSize: '16px', lineHeight: '1.5', whiteSpace: 'nowrap' }}>
+                Enter your details below
+              </div>
             </div>
-            <div className="flex-col items-start gap-[48px] flex-[0_0_auto] inline-flex relative">
-              <div className="flex-col items-start gap-[24px] flex-[0_0_auto] inline-flex relative">
-                <div className="relative w-fit mt-[-1.00px] font-heading-36px-medium font-[number:var(--heading-36px-medium-font-weight)] text-text-2 text-[length:var(--heading-36px-medium-font-size)] tracking-[var(--heading-36px-medium-letter-spacing)] leading-[var(--heading-36px-medium-line-height)] whitespace-nowrap [font-style:var(--heading-36px-medium-font-style)]">
-                  Create an account
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', position: 'relative' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '40px', position: 'relative' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '8px', position: 'relative' }}>
+                  <TextField type="text" placeholder="Name" onChange={(e) => { setName(e.target.value) }} />
                 </div>
-                <div className="relative w-fit font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
-                  Enter your details below
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '8px', position: 'relative' }}>
+                  <TextField type="text" placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '8px', position: 'relative' }}>
+                  <TextField type="password" placeholder="Password" onChange={(e) => { setPassword(e.target.value) }} />
+                  <TextField type="text" placeholder="Role" onChange={(e) => { setRole(e.target.value) }} />
                 </div>
               </div>
-              <div className="flex-col items-center gap-[40px] flex-[0_0_auto] inline-flex relative">
-                <div className="flex-col items-start gap-[40px] flex-[0_0_auto] inline-flex relative">
-                  <div className="flex-col items-start gap-[8px] flex-[0_0_auto] inline-flex relative">
-                    <div className="relative w-fit mt-[-1.00px] opacity-40 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
-                      <input type="text" placeholder="Name"
-                        onChange={(e) => { setName(e.target.value) }} />
-                    </div>
+              <Button variant="contained" color="primary" onClick={add} style={{ alignSelf: 'flex-start' }}>Create Account</Button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '32px', position: 'relative' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', position: 'relative' }}>
+                  <div style={{ position: 'relative', fontWeight: 'normal', fontSize: '16px', lineHeight: '1.5', whiteSpace: 'nowrap' }}>
+                    Already have an account?
                   </div>
-                  <div className="flex-col items-start gap-[8px] flex-[0_0_auto] inline-flex relative">
-                    <div className="relative w-fit mt-[-1.00px] opacity-40 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
-                      <input type="text" placeholder="Email "
-                        onChange={(e) => { setEmail(e.target.value) }} />
-                    </div>
-                  </div>
-                  <div className="flex-col items-start gap-[8px] flex-[0_0_auto] inline-flex relative">
-                    <div className="relative w-fit mt-[-1.00px] opacity-40 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
-                      <input type="password" placeholder="Password"
-                        onChange={(e) => { setPassword(e.target.value) }} />
-                    </div>
-                    <div className="relative w-fit mt-[-1.00px] opacity-40 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
-                      <input type="text" placeholder="Role"
-                        onChange={(e) => { setRole(e.target.value) }} />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex-col items-start gap-[16px] flex-[0_0_auto] inline-flex relative">
-                  <Button
-                    button="primary"
-                    className="!flex-[0_0_auto] !px-[122px] !py-[16px]"
-                    hover={false}
-                    text="Create Account"
-                    add={add} 
-                    />
-                  <div className="flex-col items-center gap-[32px] flex-[0_0_auto] inline-flex relative">
-                    <div className="items-center gap-[16px] flex-[0_0_auto] inline-flex relative">
-                      <div className="relative w-fit opacity-70 font-title-16px-regular font-[number:var(--title-16px-regular-font-weight)] text-text-2 text-[length:var(--title-16px-regular-font-size)] tracking-[var(--title-16px-regular-letter-spacing)] leading-[var(--title-16px-regular-line-height)] whitespace-nowrap [font-style:var(--title-16px-regular-font-style)]">
-                        Already have account?
-                      </div>
-                      <div className="flex-col items-start gap-[4px] flex-[0_0_auto] inline-flex relative">
-                        <div onClick={()=>navigate('/login')} className="cursor-pointer relative w-fit mt-[-1.00px] opacity-70 font-title-16px-medium font-[number:var(--title-16px-medium-font-weight)] text-text-2 text-[length:var(--title-16px-medium-font-size)] tracking-[var(--title-16px-medium-letter-spacing)] leading-[var(--title-16px-medium-line-height)] whitespace-nowrap [font-style:var(--title-16px-medium-font-style)]">
-                          Log in
-                        </div>
-                      </div>
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'start', gap: '4px', position: 'relative' }}>
+                    <div onClick={() => navigate('/login')} style={{ cursor: 'pointer', position: 'relative', fontWeight: 'bold', fontSize: '16px', lineHeight: '1.5', whiteSpace: 'nowrap' }}>Log in</div>
                   </div>
                 </div>
               </div>
@@ -102,9 +79,9 @@ export const Signup = () => {
           </div>
         </div>
       </div>
-      <Footer/>
-      </div>
-    );
-  };
-  
-  export default Signup;
+      <Footer />
+    </div>
+  );
+};
+
+export default Signup;

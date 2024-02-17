@@ -1,59 +1,75 @@
-// import React, { useState } from 'react'
-// import { NavLink,useNavigate } from "react-router-dom";
-// import { FaRegHeart } from "react-icons/fa";
-// import { AiOutlineShoppingCart } from "react-icons/ai";
-// import { IoSearchOutline } from "react-icons/io5";
-// import { CgProfile } from "react-icons/cg";
-// import axios from "axios";
-// import AccountDropDown from './AccountDropDown';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, IconButton, Drawer, List, ListItem, ListItemText, InputBase, Button, Avatar, Box } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import SearchIcon from '@mui/icons-material/Search';
+const NavbarWithSidebar = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-// const Navbar = ({searching}) => {
-//   const navigate=useNavigate()
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
-// const filtred=()=>{
-// axios.get('http://localhost:3000/')
+  return (
+    <>
+      <AppBar position="static" color="inherit">
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={toggleSidebar} 
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ color: 'black' }}>
+              MyShop
+            </Typography>
+            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '20px' }}>
+              {['Home', 'Contact', 'About'].map((item) => (
+                <Typography key={item} variant="h6" component="div" sx={{ color: 'black', mr: 2 }}>
+                  {item}
+                </Typography>
+              ))}
+            </div>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <IconButton
+              size="large"
+              color="inherit"
+              aria-label="favorite"
+              sx={{ color: 'black', mr: 2 }}
+            >
+              <FavoriteIcon />
+            </IconButton>
+            <Avatar sx={{ width: 32, height: 32, marginRight: 2 }} src="/path/to/profile/photo.jpg" alt="Profile" />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <InputBase
+                placeholder="Search..."
+                inputProps={{ 'aria-label': 'search' }}
+                sx={{ mr: 1 }}
+              />
+              <IconButton color="inherit" aria-label="search">
+                <SearchIcon />
+              </IconButton>
+            </Box>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Drawer anchor="left" open={sidebarOpen} onClose={toggleSidebar} sx={{ width: 300 }}>
+        <List>
+          {['Home', 'Products', 'About', 'Contact'].map((text) => (
+            <ListItem button key={text}>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </>
+  );
+};
 
-// }
-// const[e,setE]=useState('')
-// const[showAcc,setShowAcc]=useState(false)
-
-
-//   return (
-//     <div className='  bg-white z-10 '>
-//         <nav >
-//         <div className='flex items-center gap-2 h-10 bg-black text-white justify-center align-middle'>
-//             <h3 className='text-'>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</h3>
-//             <span className=' text-lg underline cursor-pointer ml-11'>Shop Now!</span>
-//             <select name='English' className='absolute right-5 text-white bg-black'>
-//                 <option >English</option>
-//             </select>
-//         </div>
-//               <div className='absolute font-bold text-4xl mt-7 ml-8 mr-8'>   ℰ-ℳ𝒶𝓁𝓁 🛒 </div> 
-//         <div className='flex justify-center gap-8 mt-11 mb-6 ml-56'>
-//         <NavLink to={'/home'} >Home</NavLink>
-//         <NavLink to={'/contact'}>Contact</NavLink>
-//         <NavLink to={'/AboutUs'}>AboutUs</NavLink>
-//         <NavLink to={'/'} style={{marginRight:'5%'}}>Sing up</NavLink>
-//         <div className='w-auto h-8 flex float-right gap-16 ml-6 right-10 top-20'>
-//             <input 
-//             onChange={(e)=>setE(e.target.value)}
-//              type="search"
-//             placeholder='What are you looking for?'
-//             className='bg-gray-200 p-2 text-xs rounded w-56 h-9 ml-6'/>
-//            <IoSearchOutline onClick={()=>{searching(e)
-//             navigate('/AllProducts')} } size={25} className=' right-15 top-1 ' style={{marginLeft: '-17%'}}/>
-//             <FaRegHeart size={25}/>
-       
-//             <AiOutlineShoppingCart className='cursor-pointer' size={25} onClick={()=>navigate('/cart')} />
-//             <CgProfile  className='cursor-pointer'  size={25} onClick={()=>setShowAcc(!showAcc)}/>
-//            {showAcc&& <AccountDropDown/>}
-//         </div>
-//         </div>
-//        </nav>
-//            <hr className='text-gray-300'/>
-
-//     </div>
-//   )
-
-//   }
-// export default Navbar
+export default NavbarWithSidebar;
