@@ -2,21 +2,22 @@ const { Sequelize, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const mysql = require("mysql2");
 const Product = require("./models/product");
-const User = require("./models/user");
+const User = require("../backend/models/user");
 const Rating = require("./models/rating");
 const Images = require("./models/images");
 
-const sequelize = new Sequelize("ecommerce", "root", "root", {
+const sequelize = new Sequelize("ecommerce", "yessine", "yessine147", {
+
   host: "localhost",
   dialect: "mysql",
 });
-
 const product = sequelize.define("product", Product);
-const user = sequelize.define("user", User);
+
+const user = sequelize.define(" user", User);
 const rating = sequelize.define('rating_prod', Rating)
 const images = sequelize.define('images', Images)
 
-console.log(sequelize.models);
+
 product.belongsToMany(user, {through: "wishlist"})
 product.belongsToMany(user, {through: "cart"})
 product.belongsToMany(user, {through: rating})
@@ -24,9 +25,10 @@ product.hasMany(images)
 user.hasMany(product)
 
 
+1
 
 
-console.log(sequelize.models);
+
 
 try {
   sequelize.authenticate();
@@ -35,6 +37,7 @@ try {
   console.error("Unable to connect to the database:", error);
 }
 
+
 module.exports = {
-  sequelize,
+  sequelize,product,user,rating,images
 };
