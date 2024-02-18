@@ -18,6 +18,7 @@ app.use('/admin',routeradmin)
 
 
 
+
 sequelize.sync()
   .then(() => {
     console.log('Database & tables created!');
